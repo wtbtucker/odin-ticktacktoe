@@ -8,31 +8,63 @@
 </head>
 <body>
     <script>
-        // initialize list of the possible choices
-        const choices = ["rock", "paper", "scissors"]
+     
+        console.log(game())
+
+        function game() {
+            let user_win_count = 0;
+            let computer_win_count = 0;
+            let game_result;
+            for (let i=0; i < 5; i++) {
+                // prompt user for input and set to lowercase
+                let user_choice = prompt("Please choose rock, paper, or scissors")
+                user_choice = user_choice.toLowerCase();
+
+                // select a random choice for the computer
+                const computer_choice = getComputerChoice()
+                
+                // play a round
+                let round_result = play_round(user_choice, computer_choice)
+                
+                // adjust win counts based on winner
+                switch (true) {
+                    case round_result === 'user':
+                        user_win_count++;
+                        break;
+                    case round_result === 'computer':
+                        computer_win_count++;
+                        break;
+                    case round_result === 'tie':
+                        break;
+                }
+            }
+            // return the winner of the entire game based on round win counts
+            switch(true) {
+                case user_win_count > computer_win_count:
+                    game_result = `User wins by a score of ${user_win_count} to ${computer_win_count}`;
+                    break;
+                case user_win_count < computer_win_count:
+                    game_result = `Computer wins by a score of ${computer_win_count} to ${user_win_count}`;
+                    break;
+                case user_win_count === computer_win_count:
+                    game_result = `It's a tie!. Both user and computer scored ${user_win_count}`;
+                    break;
+            }
+            return game_result;
+        }
+
         
-        // collect user input and set to lowercase
-        let user_choice = prompt("Please choose rock, paper, or scissors")
-        user_choice = user_choice.toLowerCase();
-
-        // select a random choice for the computer
-        const computer_choice = getComputerChoice()
-
-        let round_result = play_round(user_choice, computer_choice)
-        console.log(round_result)
 
 
-        // function called game which plays 5 rounds
-        // for loop to run 5 times
-        // each time prompt user for input
-        // get computer choice
-        // play round
         // print winner using console log
         // return winner
         // keep track of score for user and computer
-        
-        // select a random integer between 0 and 2 then index into choices for the computer
+
         function getComputerChoice() {
+            // initialize list of the possible choices
+            const choices = ["rock", "paper", "scissors"]
+
+            // select random choice
             let computer_choice = choices[Math.floor(Math.random() * 3)];
             return computer_choice;
         }
@@ -42,7 +74,7 @@
             switch (true) {
                 case user_choice === computer_choice:
                     console.log(`Tie!`)
-                    return 'Tie';
+                    return 'tie';
                 case user_choice === "rock" && computer_choice === "scissors" || user_choice === "paper" && computer_choice === "rock" || user_choice === "scissors" && computer_choice === "paper":
                     console.log(`You win! ${user_choice} beats ${computer_choice}`)
                     return 'user';
