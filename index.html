@@ -8,10 +8,9 @@
 </head>
 <body>
     <script>
-        // initialize list of the possible choices and result
+        // initialize list of the possible choices
         const choices = ["rock", "paper", "scissors"]
         
-
         // collect user input and set to lowercase
         let user_choice = prompt("Please choose rock, paper, or scissors")
         user_choice = user_choice.toLowerCase();
@@ -19,27 +18,37 @@
         // select a random choice for the computer
         const computer_choice = getComputerChoice()
 
-        console.log(play_round(user_choice, computer_choice))
+        let round_result = play_round(user_choice, computer_choice)
+        console.log(round_result)
+
+
+        // function called game which plays 5 rounds
+        // for loop to run 5 times
+        // each time prompt user for input
+        // get computer choice
+        // play round
+        // print winner using console log
+        // return winner
+        // keep track of score for user and computer
         
         // select a random integer between 0 and 2 then index into choices for the computer
         function getComputerChoice() {
             let computer_choice = choices[Math.floor(Math.random() * 3)];
             return computer_choice;
         }
-        
 
         function play_round(user_choice, computer_choice) {
             let result_string;
             switch (true) {
                 case user_choice === computer_choice:
-                    result_string = `Tie!`;
-                    return result_string;
+                    console.log(`Tie!`)
+                    return 'Tie';
                 case user_choice === "rock" && computer_choice === "scissors" || user_choice === "paper" && computer_choice === "rock" || user_choice === "scissors" && computer_choice === "paper":
-                    result_string = `You win! ${user_choice} beats ${computer_choice}`;
-                    return result_string;
+                    console.log(`You win! ${user_choice} beats ${computer_choice}`)
+                    return 'user';
                 case user_choice === "paper" && computer_choice === "scissors" || user_choice === "scissors" && computer_choice === "rock" || user_choice === "rock" && computer_choice === "paper":
-                    result_string = `You lose! ${computer_choice} beats ${user_choice}`;
-                    return result_string;
+                    console.log(`You lose! ${computer_choice} beats ${user_choice}`)
+                    return 'computer';
             }
         }
         
