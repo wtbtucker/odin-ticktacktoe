@@ -39,26 +39,24 @@
                 }
             }
             // return the winner of the entire game based on round win counts
-            switch(true) {
-                case user_win_count > computer_win_count:
-                    game_result = `User wins by a score of ${user_win_count} to ${computer_win_count}`;
-                    break;
-                case user_win_count < computer_win_count:
-                    game_result = `Computer wins by a score of ${computer_win_count} to ${user_win_count}`;
-                    break;
-                case user_win_count === computer_win_count:
-                    game_result = `It's a tie!. Both user and computer scored ${user_win_count}`;
-                    break;
-            }
-            return game_result;
+            return determine_winner(user_win_count, computer_win_count);
         }
 
         
 
-
-        // print winner using console log
-        // return winner
-        // keep track of score for user and computer
+        function determine_winner(user_win_count, computer_win_count) {
+            switch(true) {
+                case user_win_count > computer_win_count:
+                    game_result = `User wins by a score of ${user_win_count} to ${computer_win_count}`;
+                    return game_result;
+                case user_win_count < computer_win_count:
+                    game_result = `Computer wins by a score of ${computer_win_count} to ${user_win_count}`;
+                    return game_result;
+                case user_win_count === computer_win_count:
+                    game_result = `It's a tie!. Both user and computer scored ${user_win_count}`;
+                    return game_result;
+            }
+        }
 
         function getComputerChoice() {
             // initialize list of the possible choices
