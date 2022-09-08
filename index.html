@@ -13,11 +13,20 @@
 
         // collect user input and set to lowercase
         let user_input = prompt("Please choose rock, paper, or scissors")
-        user_input = user_input.toLowerCase()
+        user_choice = user_input.toLowerCase()
         
         // select a random integer between 0 and 2 then index into choices for the computer
-        let computer_choice = choices[Math.floor(Math.random() * 3)];
-
+        function getComputerChoice() {
+            let computer_choice = choices[Math.floor(Math.random() * 3)];
+            return computer_choice;
+        }
+        computer_choice = getComputerChoice()
+        console.log(computer_choice)
+        // function play_round(user_choice, computer_choice) {
+        //     switch (true) {
+        //         case user
+        //     }
+        // }
         
         
         // compare two choices and select winner
