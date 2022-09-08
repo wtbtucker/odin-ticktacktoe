@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tick-Tac-Toe</title>
+</head>
+<body>
+    <script>
+        // initialize list of the possible choices
+        const choices = ["rock", "paper", "scissors"]
+
+        // collect user input and set to lowercase
+        let user_input = prompt("Please choose rock, paper, or scissors")
+        user_input = user_input.toLowerCase()
+        
+        // select a random integer between 0 and 2 then index into choices for the computer
+        let computer_choice = choices[Math.floor(Math.random() * 3)];
+
+        
+        
+        // compare two choices and select winner
+        // 2 beats 1
+        // 1 beats 0
+        // 0 beats 2
+
+    </script>
+</body>
+</html>
