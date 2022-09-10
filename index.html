@@ -28,7 +28,12 @@
                 const user_choice = e.target.id;
                 const computer_choice = getComputerChoice();
                 let round_result = play_round(user_choice, computer_choice);
-                switch (true) {
+                update_scores(round_result);
+            });
+        });
+
+        function update_scores(round_result) {
+            switch (true) {
                 case round_result === 'user':
                     user_win_count++;
                     break;
@@ -40,9 +45,7 @@
                 }
                 user_score.textContent = `${user_win_count}`;
                 computer_score.textContent = `${computer_win_count}`;
-            });
-        });
-
+        }
         function determine_winner(user_win_count, computer_win_count) {
             switch(true) {
                 case user_win_count > computer_win_count:
