@@ -18,6 +18,7 @@
     <script>
         
         const buttons = document.querySelectorAll(".btn");
+        const div = document.querySelector('.result');
         const user_score = document.querySelector(".user");
         const computer_score = document.querySelector(".computer");
         let user_win_count = 0;
@@ -29,6 +30,11 @@
                 const computer_choice = getComputerChoice();
                 let round_result = play_round(user_choice, computer_choice);
                 update_scores(round_result);
+                if (user_win_count >= 5)  {
+                    div.textContent = `You win the entire game! The final score is ${user_win_count} to ${computer_win_count}`;
+                } else if (computer_win_count >= 5) {
+                    div.textContent = `You lose the entire game! The final score is ${computer_win_count} to ${user_win_count}`;
+                }
             });
         });
 
@@ -46,19 +52,6 @@
                 user_score.textContent = `${user_win_count}`;
                 computer_score.textContent = `${computer_win_count}`;
         }
-        function determine_winner(user_win_count, computer_win_count) {
-            switch(true) {
-                case user_win_count > computer_win_count:
-                    game_result = `User wins by a score of ${user_win_count} to ${computer_win_count}`;
-                    return game_result;
-                case user_win_count < computer_win_count:
-                    game_result = `Computer wins by a score of ${computer_win_count} to ${user_win_count}`;
-                    return game_result;
-                case user_win_count === computer_win_count:
-                    game_result = `It's a tie!. Both user and computer scored ${user_win_count}`;
-                    return game_result;
-            }
-        }
 
         function getComputerChoice() {
             // initialize list of the possible choices
@@ -70,8 +63,6 @@
         }
 
         function play_round(user_choice, computer_choice) {
-            let result_string;
-            const div = document.querySelector('.result');
             switch (true) {
                 case user_choice === computer_choice:
                     div.textContent = `Tie`;
