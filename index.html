@@ -18,24 +18,17 @@
     <script>
         
         const buttons = document.querySelectorAll(".btn");
+        const user_score = document.querySelector(".user");
+        const computer_score = document.querySelector(".computer");
+        let user_win_count = 0;
+        let computer_win_count = 0;
+        let game_result;
         buttons.forEach(button => {
             button.addEventListener("click", function(e) {
                 const user_choice = e.target.id;
                 const computer_choice = getComputerChoice();
                 let round_result = play_round(user_choice, computer_choice);
-                console.log(round_result);
-            });
-        });
-        // add a div to display the result of the round
-        // display running score and declare winner when someone reaches 5 points
-
-        function game() {
-            let user_win_count = 0;
-            let computer_win_count = 0;
-            let game_result;
-            
-            // adjust win counts based on winner
-            switch (true) {
+                switch (true) {
                 case round_result === 'user':
                     user_win_count++;
                     break;
@@ -45,9 +38,10 @@
                 case round_result === 'tie':
                     break;
                 }
-            // return the winner of the entire game based on round win counts
-            return determine_winner(user_win_count, computer_win_count);
-        }
+                user_score.textContent = `${user_win_count}`;
+                computer_score.textContent = `${computer_win_count}`;
+            });
+        });
 
         function determine_winner(user_win_count, computer_win_count) {
             switch(true) {
